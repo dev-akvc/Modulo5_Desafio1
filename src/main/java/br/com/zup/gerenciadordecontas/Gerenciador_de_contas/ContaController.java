@@ -1,6 +1,7 @@
 package br.com.zup.gerenciadordecontas.Gerenciador_de_contas;
 
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.CadastrarContaDTO;
+import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.ContaPagaDTO;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.RespostaCadastroDTO;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.ResumoContaDTO;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.StatusConta;
@@ -44,5 +45,16 @@ public class ContaController {
         return listaResumo;
 
     }
+
+//    @PutMapping("/{id}")
+//    public RespostaCadastroDTO pagarConta(@RequestBody ContaPagaDTO contaPagaDTO, @PathVariable int id) {
+//        Conta conta = modelMapper.map(contaPagaDTO, Conta.class);
+//
+//        contaService.pagarConta(conta.getId());
+//
+//        return modelMapper.map(contaService.pagarConta(id), RespostaCadastroDTO.class);
+//
+//    }
+
 
 }
