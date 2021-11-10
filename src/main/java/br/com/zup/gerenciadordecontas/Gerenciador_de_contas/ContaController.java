@@ -4,14 +4,11 @@ import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.CadastrarContaD
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.ContaPagaDTO;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.RespostaCadastroDTO;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.ResumoContaDTO;
-import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.StatusConta;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,15 +43,12 @@ public class ContaController {
 
     }
 
-//    @PutMapping("/{id}")
-//    public RespostaCadastroDTO pagarConta(@RequestBody ContaPagaDTO contaPagaDTO, @PathVariable int id) {
-//        Conta conta = modelMapper.map(contaPagaDTO, Conta.class);
-//
-//        contaService.pagarConta(conta.getId());
-//
-//        return modelMapper.map(contaService.pagarConta(id), RespostaCadastroDTO.class);
-//
-//    }
+    @PutMapping("/{id}")
+    public RespostaCadastroDTO pagarConta(@RequestBody ContaPagaDTO contaPagaDTO, @PathVariable int id) {
+        RespostaCadastroDTO respostaCadastroDTO = modelMapper.map(contaService.pagarConta(id), RespostaCadastroDTO.class);
+        return respostaCadastroDTO;
+
+    }
 
 
 }
