@@ -1,13 +1,13 @@
 package br.com.zup.gerenciadordecontas.Gerenciador_de_contas;
 
-import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.ResumoContaDTO;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.StatusConta;
+import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.exceptions.ContaNaoLocalizadaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContaService {
@@ -36,6 +36,15 @@ public class ContaService {
     public List<Conta> buscarContasCadastradas() {
         Iterable<Conta> listaContas = contaRepository.findAll();
         return (List<Conta>) listaContas;
+    }
+
+    public Conta localizarContaPorId(int id){
+        Optional<Conta> contaOptional = contaRepository.findById(id);
+        if(contaOptional.isPresent()){
+            return contaOptional.get();
+        }
+
+        throw new ContaNaoLocalizadaException();
     }
 
 }
