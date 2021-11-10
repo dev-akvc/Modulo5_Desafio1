@@ -1,5 +1,6 @@
 package br.com.zup.gerenciadordecontas.Gerenciador_de_contas;
 
+import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.ResumoContaDTO;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.StatusConta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,11 @@ public class ContaService {
         }
         return conta.getStatus();
 
+    }
+
+    public List<Conta> buscarContasCadastradas() {
+        Iterable<Conta> listaContas = contaRepository.findAll();
+        return (List<Conta>) listaContas;
     }
 
 }
