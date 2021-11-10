@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 public class Conta {
     private String nome;
     private double valor;
-    private TipoConta tipoConta;
-    private StatusConta statusConta;
+    private TipoConta tipo;
+    private StatusConta status;
     private LocalDate dataDeVencimento;
     private LocalDateTime dataDePagamento;
 
@@ -33,20 +33,20 @@ public class Conta {
         this.valor = valor;
     }
 
-    public TipoConta getTipoConta() {
-        return tipoConta;
+    public TipoConta getTipo() {
+        return tipo;
     }
 
-    public void setTipoConta(TipoConta tipoConta) {
-        this.tipoConta = tipoConta;
+    public void setTipo(TipoConta tipo) {
+        this.tipo = tipo;
     }
 
-    public StatusConta getStatusConta() {
-        return statusConta;
+    public StatusConta getStatus() {
+        return status;
     }
 
-    public void setStatusConta(StatusConta statusConta) {
-        this.statusConta = statusConta;
+    public void setStatus(StatusConta status) {
+        this.status = status;
     }
 
     public LocalDate getDataDeVencimento() {
@@ -64,4 +64,5 @@ public class Conta {
     public void setDataDePagamento(LocalDateTime dataDePagamento) {
         this.dataDePagamento = dataDePagamento;
     }
+
 }
