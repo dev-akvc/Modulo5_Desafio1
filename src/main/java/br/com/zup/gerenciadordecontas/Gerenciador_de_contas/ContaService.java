@@ -27,8 +27,8 @@ public class ContaService {
     public StatusConta atualizarStatusConta(Conta conta) {
         if (conta.getDataDeVencimento().isBefore(LocalDate.now())) {
             conta.setStatus(StatusConta.VENCIDA);
-        } else{
-        conta.setStatus(StatusConta.AGUARDANDO);
+        } else {
+            conta.setStatus(StatusConta.AGUARDANDO);
         }
         return conta.getStatus();
 
@@ -39,19 +39,23 @@ public class ContaService {
         return (List<Conta>) listaContas;
     }
 
-    public boolean localizarContaPorId(int id){
+    public Conta localizarContaPorId(int id) {
         Optional<Conta> contaOptional = contaRepository.findById(id);
-        if(contaOptional.isPresent()){
-            return true;
+        if (contaOptional.isPresent()) {
+            return contaOptional.get();
         }
 
         throw new ContaNaoLocalizadaException();
     }
 
-    public void pagarConta(int id){
-        if(localizarContaPorId(id)){
-            contaRepository.findById(id).get().setStatus(StatusConta.PAGA);
-            contaRepository.findById(id).get().setDataDePagamento(LocalDateTime.now());
-        }
+    public Conta pagarConta(int id) {
+        Conta conta = localizarContaPorId(id);
+        conta.setStatus(StatusConta.PAGA);
+        conta.setDataDePagamento(LocalDateTime.now());
+        contaRepository.save(conta);
+
+        return conta;
     }
+
 }
+
