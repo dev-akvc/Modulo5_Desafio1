@@ -28,7 +28,7 @@ public class Conta {
     private StatusConta status;
     @Column(name = "data_de_vencimento")
     private LocalDate dataDeVencimento;
-    @Column(name = "data_de_pagamento")
+    @Column(name = "data_de_pagamento", nullable = false)
     private LocalDateTime dataDePagamento;
 
 }
