@@ -1,5 +1,6 @@
 package br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos;
 
+import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.StatusConta;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.TipoConta;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,6 @@ public class RespostaCadastroDTO {
     private TipoConta tipo;
     private LocalDate dataDeVencimento;
     private LocalDateTime dataDePagamento;
+    private StatusConta status;
 
 }
