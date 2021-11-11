@@ -36,5 +36,17 @@ public class ControllerAdvisor {
         return new MensagemDeErro(exception.getMessage());
     }
 
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public MensagemDeErro manipularExcecaoDeEnumInvalido(HttpMessageNotReadableException exception) {
+        if (exception.getLocalizedMessage().contains("br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.StatusConta")) {
+            return new MensagemDeErro("Status não reconhecido");
+        }
+        else if (exception.getLocalizedMessage().contains("br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.TipoConta")) {
+            return new MensagemDeErro("Tipo não reconhecido");
+        }
+
+        return new MensagemDeErro(exception.getLocalizedMessage());
+    }
 
 }
