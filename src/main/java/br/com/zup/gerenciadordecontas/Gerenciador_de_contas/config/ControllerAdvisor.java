@@ -49,4 +49,10 @@ public class ControllerAdvisor {
         return new MensagemDeErro(exception.getLocalizedMessage());
     }
 
+    @ExceptionHandler(DateTimeParseException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public MensagemDeErro manipularExcecaoDeDataInvalida(DateTimeParseException exception) {
+        return new MensagemDeErro("Data inválida");
+    }
+
 }
