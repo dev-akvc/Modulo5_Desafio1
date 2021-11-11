@@ -2,6 +2,7 @@ package br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos;
 
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.StatusConta;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.TipoConta;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,7 @@ public class RespostaCadastroDTO {
     private double valor;
     private TipoConta tipo;
     private LocalDate dataDeVencimento;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dataDePagamento;
     private StatusConta status;
 
