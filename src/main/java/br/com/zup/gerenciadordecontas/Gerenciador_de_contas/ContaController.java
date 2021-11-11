@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class ContaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public RespostaCadastroDTO cadastrarConta(@RequestBody CadastrarContaDTO cadastrarContaDTO) {
+    public RespostaCadastroDTO cadastrarConta(@RequestBody @Valid CadastrarContaDTO cadastrarContaDTO) {
         Conta conta = modelMapper.map(cadastrarContaDTO, Conta.class);
         RespostaCadastroDTO respostaCadastroDTO = modelMapper.map(contaService.cadastrarConta(conta), RespostaCadastroDTO.class);
 
@@ -44,10 +45,15 @@ public class ContaController {
     }
 
     @PutMapping("/{id}")
-    public RespostaCadastroDTO pagarConta(@RequestBody ContaPagaDTO contaPagaDTO, @PathVariable int id) {
+    public RespostaCadastroDTO pagarConta(@RequestBody ContaPagaDTO contaPagaDTO, @PathVariable @Valid int id) {
         RespostaCadastroDTO respostaCadastroDTO = modelMapper.map(contaService.pagarConta(id), RespostaCadastroDTO.class);
         return respostaCadastroDTO;
 
+    }
+
+    @GetMapping("/{id}")
+    public Conta pesquisarContaPorId(@PathVariable int id) {
+        return contaService.localizarContaPorId(id);
     }
 
 
