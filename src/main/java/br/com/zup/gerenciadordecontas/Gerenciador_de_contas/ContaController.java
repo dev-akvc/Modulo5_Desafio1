@@ -4,6 +4,7 @@ import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.CadastrarContaD
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.ContaPagaDTO;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.RespostaCadastroDTO;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.ResumoContaDTO;
+import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.Status;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,10 +34,10 @@ public class ContaController {
     }
 
     @GetMapping
-    public List<ResumoContaDTO> buscarContasCadastradas() {
+    public List<ResumoContaDTO> buscarContasCadastradas(@RequestParam(required = false) Status status) {
         List<ResumoContaDTO> listaResumo = new ArrayList<>();
 
-        for (Conta conta : contaService.buscarContasCadastradas()) {
+        for (Conta conta : contaService.buscarContasCadastradas(status)) {
             ResumoContaDTO resumo = modelMapper.map(conta, ResumoContaDTO.class);
             listaResumo.add(resumo);
         }

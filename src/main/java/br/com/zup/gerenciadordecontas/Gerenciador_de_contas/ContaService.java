@@ -1,13 +1,12 @@
 package br.com.zup.gerenciadordecontas.Gerenciador_de_contas;
 
-import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.StatusConta;
+import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.Status;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.exceptions.ContaNaoLocalizadaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,17 +23,20 @@ public class ContaService {
 
     }
 
-    public StatusConta atualizarStatusConta(Conta conta) {
+    public Status atualizarStatusConta(Conta conta) {
         if (conta.getDataDeVencimento().isBefore(LocalDate.now())) {
-            conta.setStatus(StatusConta.VENCIDA);
+            conta.setStatus(Status.VENCIDA);
         } else {
-            conta.setStatus(StatusConta.AGUARDANDO);
+            conta.setStatus(Status.AGUARDANDO);
         }
         return conta.getStatus();
 
     }
 
-    public List<Conta> buscarContasCadastradas() {
+    public List<Conta> buscarContasCadastradas(Status status) {
+        if (status != null) {
+            return contaRepository.findAllByStatus(status);
+        }
         Iterable<Conta> listaContas = contaRepository.findAll();
         return (List<Conta>) listaContas;
     }
@@ -50,7 +52,7 @@ public class ContaService {
 
     public Conta pagarConta(int id) {
         Conta conta = localizarContaPorId(id);
-        conta.setStatus(StatusConta.PAGA);
+        conta.setStatus(Status.PAGO);
         conta.setDataDePagamento(LocalDateTime.now());
         contaRepository.save(conta);
 
