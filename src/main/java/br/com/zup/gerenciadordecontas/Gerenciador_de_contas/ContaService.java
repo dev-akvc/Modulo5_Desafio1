@@ -63,5 +63,13 @@ public class ContaService {
         return conta;
     }
 
+    public void deletarCarro(int id){
+        if (contaRepository.existsById(id)) {
+            contaRepository.deleteById(id);
+        } else {
+            throw new ContaNaoLocalizadaException("Conta não localizada!");
+        }
+    }
+
 }
 
