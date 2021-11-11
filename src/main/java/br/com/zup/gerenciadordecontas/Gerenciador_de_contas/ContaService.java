@@ -4,7 +4,6 @@ import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.StatusConta;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.exceptions.ContaNaoLocalizadaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,7 +14,6 @@ public class ContaService {
 
     @Autowired
     private ContaRepository contaRepository;
-
 
     public Conta cadastrarConta(Conta conta) {
         atualizarStatusConta(conta);
