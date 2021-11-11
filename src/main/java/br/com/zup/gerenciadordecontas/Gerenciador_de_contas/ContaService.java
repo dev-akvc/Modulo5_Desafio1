@@ -4,8 +4,10 @@ import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.StatusConta;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.exceptions.ContaNaoLocalizadaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,10 +51,18 @@ public class ContaService {
     public Conta pagarConta(int id) {
         Conta conta = localizarContaPorId(id);
         conta.setStatus(StatusConta.PAGA);
-        conta.setDataDePagamento(LocalDateTime.now());
+        conta.setDataDePagamento(formatarDataEHora());
         contaRepository.save(conta);
 
         return conta;
+    }
+
+    public LocalDateTime formatarDataEHora() {
+        LocalDateTime dataAgora = LocalDateTime.now();
+        DateTimeFormatter formatar = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String dataDePagamento = dataAgora.format(formatar);
+
+        return LocalDateTime.parse(dataDePagamento, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
 }
