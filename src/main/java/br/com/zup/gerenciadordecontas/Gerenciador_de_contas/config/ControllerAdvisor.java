@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,12 +46,6 @@ public class ControllerAdvisor {
         }
 
         return new MensagemDeErro(exception.getLocalizedMessage());
-    }
-
-    @ExceptionHandler(DateTimeParseException.class)
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    public MensagemDeErro manipularExcecaoDeDataInvalida(DateTimeParseException exception) {
-        return new MensagemDeErro("Data inválida");
     }
 
 }
