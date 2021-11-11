@@ -34,12 +34,15 @@ public class ContaService {
 
     }
 
-    public List<Conta> buscarContasCadastradas(Status status, Tipo tipo) {
+    public List<Conta> buscarContasCadastradas(Status status, Tipo tipo, Double valor) {
         if (status != null) {
             return contaRepository.findAllByStatus(status);
         }
         if (tipo != null) {
             return contaRepository.findAllByTipo(tipo);
+        }
+        if (valor != null) {
+            return contaRepository.findAllByValor(valor);
         }
         Iterable<Conta> listaContas = contaRepository.findAll();
         return (List<Conta>) listaContas;
