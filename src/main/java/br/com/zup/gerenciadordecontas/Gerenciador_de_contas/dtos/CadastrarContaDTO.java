@@ -1,6 +1,6 @@
 package br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos;
 
-import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.TipoConta;
+import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.Tipo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,7 +17,7 @@ public class CadastrarContaDTO {
     private String nome;
     @Min(value = 1, message = "Valor mínimo da conta é R$1,00")
     private double valor;
-    private TipoConta tipo;
+    private Tipo tipo;
     private LocalDate dataDeVencimento;
 
 }

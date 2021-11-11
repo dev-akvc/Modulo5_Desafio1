@@ -1,9 +1,9 @@
 package br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos;
 
-import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.StatusConta;
+import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.Status;
 import lombok.Data;
 
 @Data
 public class ContaPagaDTO {
-    private StatusConta status;
+    private Status status;
 }
