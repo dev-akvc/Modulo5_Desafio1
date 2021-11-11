@@ -1,6 +1,7 @@
 package br.com.zup.gerenciadordecontas.Gerenciador_de_contas;
 
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.Status;
+import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.Tipo;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.exceptions.ContaNaoLocalizadaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,9 +34,12 @@ public class ContaService {
 
     }
 
-    public List<Conta> buscarContasCadastradas(Status status) {
+    public List<Conta> buscarContasCadastradas(Status status, Tipo tipo) {
         if (status != null) {
             return contaRepository.findAllByStatus(status);
+        }
+        if (tipo != null) {
+            return contaRepository.findAllByTipo(tipo);
         }
         Iterable<Conta> listaContas = contaRepository.findAll();
         return (List<Conta>) listaContas;
