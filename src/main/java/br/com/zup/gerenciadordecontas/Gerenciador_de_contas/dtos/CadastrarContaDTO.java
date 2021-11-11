@@ -6,21 +6,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @NoArgsConstructor
 @Getter
 @Setter
 public class CadastrarContaDTO {
-    @NotBlank(message = "Nome da conta deve ser preenchido")
+    @Size(min=5, max = 20, message = "Nome deve ter entre 5 e 20 caracteres")
     private String nome;
-    @NotBlank(message = "Valor da conta deve ser preenchido")
     @Min(value = 1, message = "Valor mínimo da conta é R$1,00")
     private double valor;
-    @NotBlank(message = "Tipo da conta deve ser preenchido")
     private TipoConta tipo;
-    @NotBlank(message = "Data de vencimento da conta deve ser preenchida")
     private LocalDate dataDeVencimento;
 
 }
