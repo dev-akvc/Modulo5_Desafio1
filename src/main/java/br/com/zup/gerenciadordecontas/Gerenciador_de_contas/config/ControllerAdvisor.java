@@ -30,6 +30,11 @@ public class ControllerAdvisor {
         return erros;
     }
 
+    @ExceptionHandler(ContaNaoLocalizadaException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public MensagemDeErro manipularExcecaoDeContaNaoLocalizada(ContaNaoLocalizadaException exception) {
+        return new MensagemDeErro(exception.getMessage());
+    }
 
 
 }
