@@ -45,7 +45,7 @@ public class ContaService {
             return contaOptional.get();
         }
 
-        throw new ContaNaoLocalizadaException();
+        throw new ContaNaoLocalizadaException("Conta não localizada!");
     }
 
     public Conta pagarConta(int id) {
@@ -59,10 +59,10 @@ public class ContaService {
 
     public LocalDateTime formatarDataEHora() {
         LocalDateTime dataAgora = LocalDateTime.now();
-        DateTimeFormatter formatar = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatar = DateTimeFormatter.ofPattern("yyyy-MM-dd@HH:mm:ss");
         String dataDePagamento = dataAgora.format(formatar);
 
-        return LocalDateTime.parse(dataDePagamento, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        return LocalDateTime.parse(dataDePagamento, DateTimeFormatter.ofPattern("yyyy-MM-dd@HH:mm:ss"));
     }
 
 }
