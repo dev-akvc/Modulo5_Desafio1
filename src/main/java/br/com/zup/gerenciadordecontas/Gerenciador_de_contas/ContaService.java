@@ -51,18 +51,10 @@ public class ContaService {
     public Conta pagarConta(int id) {
         Conta conta = localizarContaPorId(id);
         conta.setStatus(StatusConta.PAGA);
-        conta.setDataDePagamento(formatarDataEHora());
+        conta.setDataDePagamento(LocalDateTime.now());
         contaRepository.save(conta);
 
         return conta;
-    }
-
-    public LocalDateTime formatarDataEHora() {
-        LocalDateTime dataAgora = LocalDateTime.now();
-        DateTimeFormatter formatar = DateTimeFormatter.ofPattern("yyyy-MM-dd@HH:mm:ss");
-        String dataDePagamento = dataAgora.format(formatar);
-
-        return LocalDateTime.parse(dataDePagamento, DateTimeFormatter.ofPattern("yyyy-MM-dd@HH:mm:ss"));
     }
 
 }
