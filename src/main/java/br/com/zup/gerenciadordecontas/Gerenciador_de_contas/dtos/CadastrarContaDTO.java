@@ -1,13 +1,13 @@
 package br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos;
 
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.Tipo;
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -20,8 +20,8 @@ public class CadastrarContaDTO {
     @NotEmpty
     private String nome;
     @Min(value = 1, message = "Valor mínimo da conta é R$1,00")
-    @NotNull
     private double valor;
+    @NotNull
     private Tipo tipo;
     @NotNull
     private LocalDate dataDeVencimento;
