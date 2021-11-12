@@ -66,7 +66,7 @@ public class ContaService {
         return conta;
     }
 
-    public void deletarCarro(int id){
+    public void deletarConta(int id){
         if (contaRepository.existsById(id)) {
             contaRepository.deleteById(id);
         } else {
