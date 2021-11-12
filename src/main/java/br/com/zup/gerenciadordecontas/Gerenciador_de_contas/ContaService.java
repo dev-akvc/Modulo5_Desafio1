@@ -59,14 +59,18 @@ public class ContaService {
 
     public Conta pagarConta(int id) {
         Conta conta = localizarContaPorId(id);
+
+        if(localizarContaPorId(id) != null){
         conta.setStatus(Status.PAGO);
         conta.setDataDePagamento(LocalDateTime.now());
         contaRepository.save(conta);
-
         return conta;
+        }
+
+        throw new ContaNaoLocalizadaException("Conta não localizada!");
     }
 
-    public void deletarCarro(int id){
+    public void deletarCarro(int id) {
         if (contaRepository.existsById(id)) {
             contaRepository.deleteById(id);
         } else {
