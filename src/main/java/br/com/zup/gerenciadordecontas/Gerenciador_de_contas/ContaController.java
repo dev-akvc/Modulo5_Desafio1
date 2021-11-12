@@ -6,6 +6,7 @@ import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.RespostaCadastr
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.dtos.ResumoContaDTO;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.Status;
 import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.enuns.Tipo;
+import br.com.zup.gerenciadordecontas.Gerenciador_de_contas.exceptions.StatusInvalidoException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,7 +50,10 @@ public class ContaController {
     }
 
     @PutMapping("/{id}")
-    public RespostaCadastroDTO pagarConta(@RequestBody ContaPagaDTO contaPagaDTO, @PathVariable @Valid int id) {
+    public RespostaCadastroDTO pagarConta(@RequestBody ContaPagaDTO contaPagaDTO, @PathVariable int id) {
+        if (contaPagaDTO.getStatus() != Status.PAGO) {
+            throw new StatusInvalidoException("Deve ser informado status: PAGO");
+        }
         RespostaCadastroDTO respostaCadastroDTO = modelMapper.map(contaService.pagarConta(id), RespostaCadastroDTO.class);
         return respostaCadastroDTO;
 
@@ -62,7 +66,7 @@ public class ContaController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletarConta(@PathVariable int id){
+    public void deletarConta(@PathVariable int id) {
         contaService.deletarCarro(id);
     }
 
