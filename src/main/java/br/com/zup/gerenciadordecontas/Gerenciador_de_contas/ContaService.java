@@ -42,7 +42,7 @@ public class ContaService {
             return contaRepository.findAllByTipo(tipo);
         }
         if (valor != null) {
-            return contaRepository.findAllByValor(valor);
+            return contaRepository.findAllByValorAproximado(valor);
         }
         Iterable<Conta> listaContas = contaRepository.findAll();
         return (List<Conta>) listaContas;
